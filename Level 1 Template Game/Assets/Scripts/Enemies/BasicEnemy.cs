@@ -6,6 +6,7 @@ public class BasicEnemy : MonoBehaviour
 {
     GameObject playerObject;
     public float enemySpeed, enemyHealth, attackRate, attackDelay, damageAmount, attackDistance;
+    public int scoreAmount;
     Rigidbody2D rb2D;
     
     void Start()
@@ -41,6 +42,7 @@ public class BasicEnemy : MonoBehaviour
         enemyHealth -= amount;
         if(enemyHealth <= 0)
         {
+            playerObject.GetComponent<TopDownMovement>().scoreNum += scoreAmount;
             Destroy(gameObject);
         }
     }

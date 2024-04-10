@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class TopDownMovement : MonoBehaviour
 {
@@ -8,14 +10,19 @@ public class TopDownMovement : MonoBehaviour
     public bool facingRight = true;
     public Vector2 moveDirection;
     public float walkSpeed;
+    TMP_Text scoreText;
+    public int scoreNum;
 
     // Start is called before the first frame update
     void Start()
     {
+        scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
         rb2D = GetComponent<Rigidbody2D>();    
     }
 
-    // Update is called once per frame
+    void Update(){
+        scoreText.SetText("Score: " + scoreNum.ToString());
+    }
     void FixedUpdate()
     {
         Move();

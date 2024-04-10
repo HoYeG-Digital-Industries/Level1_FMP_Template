@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class TopDownBullet : MonoBehaviour
 {
     Rigidbody2D rb;
     GameObject enemy;
     public float bulletSpeed, bulletDamage;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -15,12 +18,13 @@ public class TopDownBullet : MonoBehaviour
         rb.AddForce(transform.up * bulletSpeed);
         enemy = GameObject.FindWithTag("Target");
     }
-
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Target"))
         {
             other.GetComponent<BasicEnemy>().TakeDamage(bulletDamage);
+            Destroy(gameObject);
         }
     }
 }
